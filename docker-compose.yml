@@ -1,0 +1,18 @@
+web:
+  build: .
+  command: python -u hello.py
+  ports:
+    - "5000:5000"
+  volumes:
+    - .:/harness
+  environment:
+    MONGODB_HOST: db
+  links:
+      - db
+
+db:
+  image: mongo:3.4
+  command: mongod
+  ports:
+    - "27001:27001"
+
